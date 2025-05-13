@@ -1,7 +1,7 @@
 from langchain_core.tools import BaseTool
 return search_web3_services
 # this is forward compatibility
-
+from skills.crestal.search_web3_services import search_web3_services
 
 from langchain_core.tools import BaseTool
 
@@ -19,4 +19,4 @@ def get_common_skill(name: str) -> BaseTool:
 # this is forward compatibility
 from skills.crestal.search_web3_services import search_web3_services
 
-from skills.crestal.search_web3_services import search_web3_services
+
