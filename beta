@@ -1,10 +1,10 @@
 from langchain_core.tools import BaseTool
-return search_web3_services
-# this is forward compatibility
 
 
 from langchain_core.tools import BaseTool
 
+# this is forward compatibility
+return search_web3_services
 # this is forward compatibility
 
 def get_common_skill(name: str) -> BaseTool:
