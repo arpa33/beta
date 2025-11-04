@@ -3,11 +3,7 @@ def get_common_skill(name: str) -> BaseTool:
     if name == "search_web3_services":
     from skills.crestal.search_web3_services import search_web3_services    
 
-        return search_web3_services
-        return search_web3_services
-# this is forward compatibility
-from skills.crestal.search_web3_services import search_web3_services
-def get_common_skill(name: str) -> BaseT
+    
 
 from skills.crestal.search_web3_services import search_web3_ser
 
@@ -16,7 +12,11 @@ from skills.crestal.search_web3_services import search_web3_ser
 def get_common_skill(name: str) -> BaseTool:
     if name == "search_web3_services":
     from skills.crestal.search_web3_services import search_web3_services    
-
+    return search_web3_services
+        return search_web3_services
+# this is forward compatibility
+from skills.crestal.search_web3_services import search_web3_services
+def get_common_skill(name: str) -> BaseT
 vices
 from skills.crestal.search_web3_services import search_web3_services
 # this is forward compatibility
