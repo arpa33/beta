@@ -1,31 +1,81 @@
-  
+smart-air-purifier/
+│
+├── firmware/
+│   ├── main.ino              # کد ESP32/Arduino
+│   ├── sensors.h
+│   ├── fan_control.h
+│   └── purifier_logic.h
+│
+├── controller/
+│   ├── api.py                # API کنترل دستگاه
+│   └── air_quality.py
+│
+├── README.md
+└── requirements.txt
+import random
+import time
 
-def get_common_skill(name: str) -> BaseTool:
-    if name == "search_web3_services":
-    from skills.crestal.search_web3_services import search_web3_services    
-    return search_web3_services
-        return search_web3_services
-# this is forward compatibility
-    from langchain_core.tools import BaseTool
-# this is forward compatibility
-return search_web3_services
-# this is forward compatibility
+class AirPurifier:
+    def __init__(self):
+        self.mode = "AUTO"
+        self.fan_speed = 0
+        self.pm25 = 0
 
-from skills.crestal.search_web3_services import search_web3_ser
-from langchain_core.tools import BaseTool
-def get_common_skill(name: str) -> BaseTool:
-    if name == "search_web3_services":
-    from skills.crestal.search_web3_services import search_web3_services  
+    def read_sensor(self):
+        # شبیه‌سازی سنسور PM2.5
+        self.pm25 = random.randint(5, 180)
+        return self.pm25
 
+    def auto_adjust(self):
+        if self.pm25 < 30:
+            self.fan_speed = 0
+        elif self.pm25 < 80:
+            self.fan_speed = 1
+        elif self.pm25 < 120:
+            self.fan_speed = 2from flask import Flask, jsonify, request
+from air_quality import AirPurifier
 
-from skills.crestal.search_web3_services import search_web3_services
-def get_common_skill(name: str) -> BaseT
-vices
-from skills.crestal.search_web3_services import search_web3_services
-# this is forward compatibility
-from langchain_core.tools import BaseTool
-def get_common_skill(name: str) -> BaseTool:
-    if name == "search_web3_services":
+app = Flask(__name__)
+purifier = AirPurifier()
 
-# this is forward compatibility
-from skills.crestal.search_web3_services import search_web3_services
+@app.route("/status")
+def status():
+    purifier.read_sensor()
+    return jsonify({
+        "mode": purifier.mode,
+        "pm25": purifier.pm25,
+        "fan_speed": purifier.fan_speed,
+        "filter": purifier.filter_status()
+    })
+
+@app.route("/set_mode", methods=["POST"])
+def set_mode():
+    purifier.mode = request.json.get("mode", "AUTO")
+    return jsonify({"status": "OK", "mode": purifier.mode})
+
+@app.route("/set_fan", methods=["POST"])
+def set_fan():
+    purifier.fan_speed = request.json.get("speed", 1)
+    return jsonify({"status": "OK", "fan_speed": purifier.fan_speed})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
+
+        else:
+            self.fan_speed = 3
+
+    def filter_status(self):
+        if self.pm25 > 150:
+            return "Filter dirty – needs replacement"
+        return "Filter OK"
+
+    def cycle(self):
+        self.read_sensor()
+        if self.mode == "AUTO":
+            self.auto_adjust()
+
+        print(f"PM2.5: {self.pm25}")
+        print(f"Fan Speed: {self.fan_speed}")
+        print(f"Filter: {self.filter_status()}")
+        print("------------------")
+        time.sleep(2)
