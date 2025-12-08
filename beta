@@ -69,13 +69,14 @@ if __name__ == "__main__":
             return "Filter dirty – needs replacement"
         return "Filter OK"
 
-    def cycle(self):
+ 
+        print(f"Fan Speed: {self.fan_speed}")
+        print(f"Filter: {self.filter_status()}")
+        print("------------------")
+        time.sleep(2)
+   def cycle(self):
         self.read_sensor()
         if self.mode == "AUTO":
             self.auto_adjust()
 
         print(f"PM2.5: {self.pm25}")
-        print(f"Fan Speed: {self.fan_speed}")
-        print(f"Filter: {self.filter_status()}")
-        print("------------------")
-        time.sleep(2)
