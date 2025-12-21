@@ -14,7 +14,15 @@ smart-air-purifier/
 └── requirements.txt
 import random
 import time
+@app.route("/set_mode", methods=["POST"])
+def set_mode():
+    purifier.mode = request.json.get("mode", "AUTO")
+    return jsonify({"status": "OK", "mode": purifier.mode})
 
+@app.route("/set_fan", methods=["POST"])
+def set_fan():
+    purifier.fan_speed = request.json.get("speed", 1)
+    return jsonify({"status": "OK", "fan_speed": purifier.fan_speed})
 class AirPurifier:
     def __init__(self):
         self.mode = "AUTO"
@@ -48,15 +56,7 @@ def status():
         "filter": purifier.filter_status()
     })
 
-@app.route("/set_mode", methods=["POST"])
-def set_mode():
-    purifier.mode = request.json.get("mode", "AUTO")
-    return jsonify({"status": "OK", "mode": purifier.mode})
 
-@app.route("/set_fan", methods=["POST"])
-def set_fan():
-    purifier.fan_speed = request.json.get("speed", 1)
-    return jsonify({"status": "OK", "fan_speed": purifier.fan_speed})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
