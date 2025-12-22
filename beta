@@ -1,4 +1,13 @@
-smart-air-purifier/
+smart-aif __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
+
+        else:
+            self.fan_speed = 3
+
+    def filter_status(self):
+        if self.pm25 > 150:
+            return "Filter dirty – needs replacement"
+        return "Filter OK"ir-purifier/
 │
 ├── firmware/
 │   ├── main.ino              # کد ESP32/Arduino
@@ -58,16 +67,7 @@ def status():
 
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
 
-        else:
-            self.fan_speed = 3
-
-    def filter_status(self):
-        if self.pm25 > 150:
-            return "Filter dirty – needs replacement"
-        return "Filter OK"
 
  
         print(f"Fan Speed: {self.fan_speed}")
