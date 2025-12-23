@@ -2,7 +2,17 @@ smart-aif __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 
         else:
-            self.fan_speed = 3
+        app = Flask(__name__)
+purifier = AirPurifier()
+
+@app.route("/status")
+def status():
+    purifier.read_sensor()
+    return jsonify({
+        "mode": purifier.mode,
+        "pm25": purifier.pm25,
+        "fan_speed": purifier.fan_speed,
+        "filter": purifier.filter_status()    self.fan_speed = 3
 
     def filter_status(self):
         if self.pm25 > 150:
@@ -52,17 +62,7 @@ def set_mode():
             self.fan_speed = 2from flask import Flask, jsonify, request
 from air_quality import AirPurifier
 
-app = Flask(__name__)
-purifier = AirPurifier()
 
-@app.route("/status")
-def status():
-    purifier.read_sensor()
-    return jsonify({
-        "mode": purifier.mode,
-        "pm25": purifier.pm25,
-        "fan_speed": purifier.fan_speed,
-        "filter": purifier.filter_status()
     })
 
 
