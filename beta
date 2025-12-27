@@ -29,14 +29,6 @@ def set_mode():
     return jsonify({"status": "OK", "mode": purifier.mode})
 
 
-        self.mode = "AUTO"
-        self.fan_speed = 0
-        self.pm25 = 0
-
-    def read_sensor(self):
-        # شبیه‌سازی سنسور PM2.5
-        self.pm25 = random.randint(5, 180)
-        return self.pm25
 
     def auto_adjust(self):
         if self.pm25 < 30:
@@ -64,6 +56,14 @@ def status():
         "filter": purifier.filter_status()    self.fan_speed = 3
 
     })
+        self.mode = "AUTO"
+        self.fan_speed = 0
+        self.pm25 = 0
+
+    def read_sensor(self):
+        # شبیه‌سازی سنسور PM2.5
+        self.pm25 = random.randint(5, 180)
+        return self.pm25
 
 
 
