@@ -29,7 +29,9 @@ def set_mode():
     return jsonify({"status": "OK", "mode": purifier.mode})
 
 
-
+urifier.fan_speed = request.json.get("speed", 1)
+    return jsonify({"status": "OK", "fan_speed": purifier.fan_speed})
+class AirPurifier:
     def auto_adjust(self):
         if self.pm25 < 30:
             self.fan_speed = 0
