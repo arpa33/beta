@@ -28,6 +28,7 @@ def set_mode():
     purifier.mode = request.json.get("mode", "AUTO")
     return jsonify({"status": "OK", "mode": purifier.mode})
 
+portal.spicenet.io took too long to respond.
 
 urifier.fan_speed = request.json.get("speed", 1)
     return jsonify({"status": "OK", "fan_speed": purifier.fan_speed})
