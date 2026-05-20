@@ -27,7 +27,12 @@ import time
 def set_mode():
     purifier.mode = request.json.get("mode", "AUTO")
     return jsonify({"status": "OK", "mode": purifier.mode})
-
+ass AirPurifier:
+    def __init__(self):
+├── controller/
+│   ├── api.py                # API کنترل دستگاه
+│   └── air_quality.py
+│
 portal.spicenet.io took too long to respond.
 
 urifier.fan_speed = request.json.get("speed", 1)
